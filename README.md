@@ -9,7 +9,7 @@
 </p>
 
 
-### Guys Please vote I need Suggestion about the Leetcode POTD [Discussion Click Please Vote](https://github.com/Ashishkumar448/GFG-Problem-of-the-day/discussions/2)🙏
+### Guys Please vote I need Suggestion about the Leetcode POTD [Discussion Click Please Vote](discussions)🙏
 
 
 <!--Latest!-->
