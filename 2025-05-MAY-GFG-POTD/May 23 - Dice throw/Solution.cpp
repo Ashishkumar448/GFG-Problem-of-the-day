@@ -1,0 +1,23 @@
+class Solution {
+public:
+    static int noOfWays(int m, int n, int x) {
+        vector<vector<int>> dp(n + 1, vector<int>(x + 1, 0));
+        
+        // Base case
+        dp[0][0] = 1;
+        
+        // Fill the dp table
+        for (int dice = 1; dice <= n; dice++) {
+            for (int sum = 1; sum <= x; sum++) {
+                dp[dice][sum] = 0;
+                for (int face = 1; face <= m; face++) {
+                    if (sum - face >= 0) {
+                        dp[dice][sum] += dp[dice - 1][sum - face];
+                    }
+                }
+            }
+        }
+        
+        return dp[n][x];
+    }
+};
