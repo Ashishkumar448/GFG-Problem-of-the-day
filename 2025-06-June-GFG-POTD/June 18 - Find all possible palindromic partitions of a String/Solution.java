@@ -1,0 +1,31 @@
+class Solution {
+    public ArrayList<ArrayList<String>> palinParts(String s) {
+        ArrayList<ArrayList<String>> result = new ArrayList<>();
+        backtrack(s, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(String s, int start, ArrayList<String> current, ArrayList<ArrayList<String>> result) {
+        if (start == s.length()) {
+            result.add(new ArrayList<>(current)); // add deep copy
+            return;
+        }
+
+        for (int end = start + 1; end <= s.length(); end++) {
+            String substring = s.substring(start, end);
+            if (isPalindrome(substring)) {
+                current.add(substring);
+                backtrack(s, end, current, result);
+                current.remove(current.size() - 1); // backtrack
+            }
+        }
+    }
+
+    private boolean isPalindrome(String str) {
+        int left = 0, right = str.length() - 1;
+        while (left < right) {
+            if (str.charAt(left++) != str.charAt(right--)) return false;
+        }
+        return true;
+    }
+}
