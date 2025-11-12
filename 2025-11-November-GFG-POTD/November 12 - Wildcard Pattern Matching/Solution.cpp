@@ -1,24 +1,25 @@
 class Solution {
-    public boolean wildCard(String txt, String pat) {
-        int n = pat.length();
-        int m = txt.length();
+public:
+    bool wildCard(string txt, string pat) {
+        int n = pat.size();
+        int m = txt.size();
         
-        boolean[][] dp = new boolean[n + 1][m + 1];
+        vector<vector<bool>> dp(n + 1, vector<bool>(m + 1, false));
         
         // Base case: empty pattern and empty text
         dp[0][0] = true;
         
         // Handle patterns with '*' at the start
         for (int i = 1; i <= n; i++) {
-            if (pat.charAt(i - 1) == '*')
+            if (pat[i - 1] == '*')
                 dp[i][0] = dp[i - 1][0];
         }
         
         // Fill the DP table
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
-                char p = pat.charAt(i - 1);
-                char t = txt.charAt(j - 1);
+                char p = pat[i - 1];
+                char t = txt[j - 1];
                 
                 if (p == t || p == '?') {
                     dp[i][j] = dp[i - 1][j - 1];
@@ -32,4 +33,4 @@ class Solution {
         
         return dp[n][m];
     }
-}
+};
