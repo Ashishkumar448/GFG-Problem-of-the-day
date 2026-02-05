@@ -1,0 +1,27 @@
+class Solution {
+    public int maxOnes(int arr[], int k) {
+        int left = 0;
+        int zeroCount = 0;
+        int maxLen = 0;
+
+        for (int right = 0; right < arr.length; right++) {
+            // If we see a zero, increase zero count
+            if (arr[right] == 0) {
+                zeroCount++;
+            }
+
+            // If zero count exceeds k, shrink window from left
+            while (zeroCount > k) {
+                if (arr[left] == 0) {
+                    zeroCount--;
+                }
+                left++;
+            }
+
+            // Update maximum length
+            maxLen = Math.max(maxLen, right - left + 1);
+        }
+
+        return maxLen;
+    }
+}
