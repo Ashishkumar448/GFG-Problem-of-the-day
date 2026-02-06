@@ -1,0 +1,40 @@
+class Solution:
+    def smallestDiff(self, a, b, c):
+
+        a.sort()
+        b.sort()
+        c.sort()
+
+        i = j = k = 0
+        bestDiff = float('inf')
+        bestSum = float('inf')
+        result = [0, 0, 0]
+
+        while i < len(a) and j < len(b) and k < len(c):
+
+            x, y, z = a[i], b[j], c[k]
+
+            currMin = min(x, y, z)
+            currMax = max(x, y, z)
+
+            currDiff = currMax - currMin
+            currSum = x + y + z
+
+            if currDiff < bestDiff or \
+               (currDiff == bestDiff and currSum < bestSum):
+
+                bestDiff = currDiff
+                bestSum = currSum
+                result = [x, y, z]
+
+            # Move pointer with smallest value
+            if currMin == x:
+                i += 1
+            elif currMin == y:
+                j += 1
+            else:
+                k += 1
+
+        # Return in decreasing order
+        result.sort(reverse=True)
+        return result
